@@ -1,24 +1,44 @@
 package model.booking;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class Reservation {
 
     private String reservationCode;
-    private String reservationDates;
-    private double totalFees;
-    private String selectedOption; // Flight or Car info
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private double reservationFees;
 
-    public Reservation(String reservationDates, String selectedOption) {
-        this.reservationDates = reservationDates;
-        this.selectedOption = selectedOption;
+    private Flight flight;        // 0..1
+    private Car carRental;  // 0..1
+
+    public Reservation() {
         this.reservationCode = generateReservationCode();
     }
 
-    /* Core Responsibilities */
+    // === Reservation Logic ===
 
-    public void calculateReservationFees(double amount) {
-        this.totalFees = amount;
+    public void setReservationDates(LocalDate start, LocalDate end) {
+        this.startDate = start;
+        this.endDate = end;
+    }
+
+    public void attachFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+    public void attachCarRental(Car carRental) {
+        this.carRental = carRental;
+    }
+
+    public double calculateReservationFees(int days) {
+        if (flight != null) {
+            reservationFees = flight.getTicketPrice();
+        } else if (carRental != null) {
+            reservationFees = carRental.getPricePerDay() * days;
+        }
+        return reservationFees;
     }
 
     private String generateReservationCode() {
@@ -27,18 +47,12 @@ public class Reservation {
 
     public void showReservationDetails() {
         System.out.println("Reservation Code: " + reservationCode);
-        System.out.println("Dates: " + reservationDates);
-        System.out.println("Selected Option: " + selectedOption);
-        System.out.println("Total Fees: $" + totalFees);
+        System.out.println("Fees: " + reservationFees);
     }
 
-    /* Getters */
+    // === Getters ===
 
     public String getReservationCode() {
         return reservationCode;
-    }
-
-    public double getTotalFees() {
-        return totalFees;
     }
 }

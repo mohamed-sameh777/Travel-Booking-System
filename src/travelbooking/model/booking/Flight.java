@@ -19,10 +19,16 @@ public class Flight {
         this.ticketPrice = ticketPrice;
     }
 
-    /* Responsibilities */
+    // === Core Responsibilities ===
 
-    public boolean checkFlightDetails() {
+    public boolean seeAvailableFlights() {
         return seatsAvailable > 0;
+    }
+
+    public void checkFlightDetails() {
+        System.out.println("Flight " + flightNumber + " | Airline: " + airline +
+                " | From: " + departure + " | To: " + arrival +
+                " | Price: " + ticketPrice);
     }
 
     public boolean reserveFlight() {
@@ -33,23 +39,23 @@ public class Flight {
         return false;
     }
 
-    public void trackFlight() {
-        System.out.println("Tracking flight " + flightNumber + " with " + airline);
-    }
-
     public void manageSeatsAvailable(int seats) {
         this.seatsAvailable = seats;
     }
 
-    public double payTicketFees() {
-        return ticketPrice;
+    public void trackFlight() {
+        System.out.println("Tracking flight " + flightNumber);
+    }
+
+    public boolean payTicketFees(double amount) {
+        return amount >= ticketPrice;
     }
 
     public void printTicket() {
         System.out.println("Ticket printed for flight " + flightNumber);
     }
 
-    /* Getters */
+    // === Getters ===
 
     public double getTicketPrice() {
         return ticketPrice;

@@ -9,7 +9,7 @@ public class Car {
     private double pricePerDay;
 
     public Car(int carID, String carType, String company,
-               boolean availability, double pricePerDay) {
+                     boolean availability, double pricePerDay) {
         this.carID = carID;
         this.carType = carType;
         this.company = company;
@@ -17,10 +17,19 @@ public class Car {
         this.pricePerDay = pricePerDay;
     }
 
-    /* Responsibilities */
+    // === Core Responsibilities ===
 
-    public boolean checkCarDetails() {
+    public boolean seeAvailableCars() {
         return availability;
+    }
+
+    public void seeCarTypes() {
+        System.out.println("Car Type: " + carType);
+    }
+
+    public void checkCarDetails() {
+        System.out.println("Car ID: " + carID + " | Type: " + carType +
+                " | Company: " + company + " | Price/Day: " + pricePerDay);
     }
 
     public boolean reserveCar() {
@@ -31,17 +40,17 @@ public class Car {
         return false;
     }
 
-    public double payCarFees(int days) {
-        return pricePerDay * days;
+    public boolean payCarFees(double amount, int days) {
+        return amount >= (pricePerDay * days);
     }
 
-    /* Getters */
-
-    public int getCarID() {
-        return carID;
-    }
+    // === Getters ===
 
     public double getPricePerDay() {
         return pricePerDay;
+    }
+
+    public int getCarID() {
+        return carID;
     }
 }
