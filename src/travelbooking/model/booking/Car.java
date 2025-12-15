@@ -1,33 +1,47 @@
 package model.booking;
 
-
 public class Car {
 
-    private String id;
-    private String model;
-    private double price;
-    private boolean available;
+    private int carID;
+    private String carType;
+    private String company;
+    private boolean availability;
+    private double pricePerDay;
 
-    public Car(String id, String model, double price) {
-        this.id = id;
-        this.model = model;
-        this.price = price;
-        this.available = true;
+    public Car(int carID, String carType, String company,
+               boolean availability, double pricePerDay) {
+        this.carID = carID;
+        this.carType = carType;
+        this.company = company;
+        this.availability = availability;
+        this.pricePerDay = pricePerDay;
     }
 
-    public boolean checkAvailability() {
-        return available;
+    /* Responsibilities */
+
+    public boolean checkCarDetails() {
+        return availability;
     }
 
-    public void reserveCar() {
-        available = false;
+    public boolean reserveCar() {
+        if (availability) {
+            availability = false;
+            return true;
+        }
+        return false;
     }
 
-    public double getPrice() {
-        return price;
+    public double payCarFees(int days) {
+        return pricePerDay * days;
     }
 
-    public String getId() {
-        return id;
+    /* Getters */
+
+    public int getCarID() {
+        return carID;
+    }
+
+    public double getPricePerDay() {
+        return pricePerDay;
     }
 }

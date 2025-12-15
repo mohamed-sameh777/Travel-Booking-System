@@ -1,35 +1,61 @@
 package model.booking;
 
-
 public class Flight {
 
-    private String id;
-    private String destination;
-    private double price;
-    private int availableSeats;
+    private String flightNumber;
+    private String airline;
+    private String departure;
+    private String arrival;
+    private int seatsAvailable;
+    private double ticketPrice;
 
-    public Flight(String id, String destination, double price, int availableSeats) {
-        this.id = id;
-        this.destination = destination;
-        this.price = price;
-        this.availableSeats = availableSeats;
+    public Flight(String flightNumber, String airline, String departure,
+                  String arrival, int seatsAvailable, double ticketPrice) {
+        this.flightNumber = flightNumber;
+        this.airline = airline;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.seatsAvailable = seatsAvailable;
+        this.ticketPrice = ticketPrice;
     }
 
-    public boolean checkAvailability() {
-        return availableSeats > 0;
+    /* Responsibilities */
+
+    public boolean checkFlightDetails() {
+        return seatsAvailable > 0;
     }
 
-    public void updateAvailability() {
-        if (availableSeats > 0) {
-            availableSeats--;
+    public boolean reserveFlight() {
+        if (seatsAvailable > 0) {
+            seatsAvailable--;
+            return true;
         }
+        return false;
     }
 
-    public double getPrice() {
-        return price;
+    public void trackFlight() {
+        System.out.println("Tracking flight " + flightNumber + " with " + airline);
     }
 
-    public String getId() {
-        return id;
+    public void manageSeatsAvailable(int seats) {
+        this.seatsAvailable = seats;
+    }
+
+    public double payTicketFees() {
+        return ticketPrice;
+    }
+
+    public void printTicket() {
+        System.out.println("Ticket printed for flight " + flightNumber);
+    }
+
+    /* Getters */
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
     }
 }
