@@ -1,4 +1,4 @@
-package model.users;
+package travelbooking.model.users;
 
 public class User {
 

@@ -1,6 +1,6 @@
-package model.users;
+package travelbooking.model.users;
 
-import model.booking.Car;
+import travelbooking.model.booking.Car;
 
 public class Customer extends User {
 

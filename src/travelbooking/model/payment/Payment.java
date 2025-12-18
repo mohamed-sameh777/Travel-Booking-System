@@ -1,4 +1,4 @@
-package model.payment;
+package travelbooking.model.payment;
 
 public class Payment {
 

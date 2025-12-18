@@ -1,4 +1,4 @@
-package model.booking;
+package travelbooking.model.booking;
 
 public class Flight {
 
